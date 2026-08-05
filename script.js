@@ -1,5 +1,6 @@
 const GRID_SIZE_SQ_PX = 16 * 50;
 const DEF_SQ_PER_SIDE = 16;
+const MAX_INTERACT_CELL = 10;
 
 const objContainer = document.querySelector('.container');
 const objNewGridBtn = document.querySelector('button');
@@ -39,12 +40,27 @@ function setHoverEffect() {
     let intBlueVal = 0;
 
     objCells.forEach(objCell => {
-        objCell.addEventListener('mouseenter', (event) => {
-            intRedVal = randNumFrom0to255();
-            intGreenVal = randNumFrom0to255();
-            intBlueVal = randNumFrom0to255();
 
-            objCell.style['background-color'] = `rgb(${intRedVal}, ${intGreenVal}, ${intBlueVal})`;
+        let intInteractCell = 0;
+
+        objCell.addEventListener('mouseenter', (event) => {
+
+            if(intInteractCell !== MAX_INTERACT_CELL) {
+                intInteractCell++;
+
+                if(intInteractCell === MAX_INTERACT_CELL) {
+                    objCell.style['background-color'] = 'black';
+                } else {
+                    intRedVal = randNumFrom0to255();
+                    intGreenVal = randNumFrom0to255();
+                    intBlueVal = randNumFrom0to255();
+    
+                    objCell.style['background-color'] = `
+                        rgb(${intRedVal}, ${intGreenVal}, ${intBlueVal})
+                    `;
+                    objCell.style['opacity'] = `${intInteractCell}0%`;
+                }
+            }
         });
     });
 }
@@ -60,8 +76,11 @@ objNewGridBtn.addEventListener('click', (event) => {
     let intSqPerSide = 0;
 
     while(!isNumFrom1to100(intSqPerSide)) {
-        const strPrompt = prompt("Enter custom number of squares per side (MAX = 100):");
+        const strPrompt = prompt(
+            "Enter custom number of squares per side (MAX = 100):"
+        );
 
+        // User clicks cancel button in prompt
         if(strPrompt === null) {
             return;
         }
