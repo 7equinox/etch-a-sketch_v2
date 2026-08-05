@@ -8,6 +8,10 @@ function calcCellSize(intPx) {
     return GRID_SIZE_SQ_PX / intPx;
 }
 
+function randNumFrom0to255() {
+    return Math.floor(Math.random() * 256);
+}
+
 function isNumFrom1to100(intPrompt) {
     return intPrompt >= 1 && intPrompt <= 100;
 }
@@ -30,9 +34,17 @@ function createGrid(intSqPerSide) {
 function setHoverEffect() {
     const objCells = document.querySelectorAll('.cell');
 
+    let intRedVal = 0;
+    let intGreenVal = 0;
+    let intBlueVal = 0;
+
     objCells.forEach(objCell => {
         objCell.addEventListener('mouseenter', (event) => {
-            objCell.style['background-color'] = 'yellow';
+            intRedVal = randNumFrom0to255();
+            intGreenVal = randNumFrom0to255();
+            intBlueVal = randNumFrom0to255();
+
+            objCell.style['background-color'] = `rgb(${intRedVal}, ${intGreenVal}, ${intBlueVal})`;
         });
     });
 }
