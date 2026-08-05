@@ -48,9 +48,15 @@ objNewGridBtn.addEventListener('click', (event) => {
     let intSqPerSide = 0;
 
     while(!isNumFrom1to100(intSqPerSide)) {
-        intSqPerSide = parseInt(prompt("Enter custom number of squares per side (MAX = 100):"));
+        const strPrompt = prompt("Enter custom number of squares per side (MAX = 100):");
+
+        if(strPrompt === null) {
+            return;
+        }
+
+        intSqPerSide = parseInt(strPrompt);
     }
-    
+
     deleteGrid();
     createGrid(intSqPerSide);
     setHoverEffect();
