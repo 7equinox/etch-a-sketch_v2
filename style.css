@@ -1,0 +1,29 @@
+:root {
+    --max-row-size: calc(16 * 50px);
+    --max-col-size: calc(16 * 50px);
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    flex: 0;
+    min-width: var(--max-row-size);
+    min-height: var(--max-col-size);
+    border: 5px solid black;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.cell {
+    min-width: 50px;
+    min-height: 50px;
+    border: 1px solid black;
+    box-sizing: border-box;
+}
