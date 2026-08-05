@@ -1,12 +1,28 @@
+const GRID_SIZE_SQ_PX = 16 * 50;
 const DEF_SQ_PER_SIDE = 16;
 
 const objContainer = document.querySelector('.container');
 const objNewGridBtn = document.querySelector('button');
 
+function calcCellSize(intPx) {
+    return GRID_SIZE_SQ_PX / intPx;
+}
+
+function isNumFrom1to100(intPrompt) {
+    return intPrompt >= 1 && intPrompt <= 100;
+}
+
 function createGrid(intSqPerSide) {
+    const intSidePx = calcCellSize(intSqPerSide);
+
     for(let intCell = 0; intCell < intSqPerSide ** 2; intCell++) {
+
         const objCell = document.createElement('div');
+
         objCell.classList.add('cell');
+        objCell.style['min-width'] = `${intSidePx}px`;
+        objCell.style['min-height'] = `${intSidePx}px`;
+
         objContainer.appendChild(objCell);
     }
 }
@@ -28,15 +44,13 @@ function deleteGrid() {
     });
 }
 
-function isNumFrom1to100(intNum) {
-    return intNum >= 1 && intNum <= 100;
-}
-
 objNewGridBtn.addEventListener('click', (event) => {
     let intSqPerSide = 0;
+
     while(!isNumFrom1to100(intSqPerSide)) {
         intSqPerSide = parseInt(prompt("Enter custom number of squares per side (MAX = 100):"));
     }
+    
     deleteGrid();
     createGrid(intSqPerSide);
     setHoverEffect();
