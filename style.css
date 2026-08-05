@@ -10,11 +10,16 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+}
+
+button {
+    margin-top: 20px;
 }
 
 .container {
     flex: 0;
-    min-width: var(--max-row-size);
+    width: var(--max-row-size);
     min-height: var(--max-col-size);
     border: 5px solid black;
     display: flex;
@@ -22,6 +27,7 @@ body {
 }
 
 .cell {
+    flex: 1;
     min-width: 50px;
     min-height: 50px;
     border: 1px solid black;
