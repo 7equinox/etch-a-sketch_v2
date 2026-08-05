@@ -7,3 +7,11 @@ for(let intCell = 0; intCell < MAX_CELLS; intCell++) {
     objCell.classList.add("cell");
     objContainer.appendChild(objCell);
 }
+
+const objCells = document.querySelectorAll(".cell");
+
+objCells.forEach(objCell => {
+    objCell.addEventListener("mouseenter", (event) => {
+        objCell.style["background-color"] = "yellow";
+    });
+});
